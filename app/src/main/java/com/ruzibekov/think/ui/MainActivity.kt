@@ -10,9 +10,10 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import com.ruzibekov.think.ui.nav.MainNavHost
+import com.ruzibekov.think.ui.screens.main.listeners.MainListeners
 import com.ruzibekov.think.ui.theme.ThinkTheme
 
-class MainActivity : ComponentActivity() {
+class MainActivity : ComponentActivity(), MainListeners {
 
     private val viewModel by viewModels<MainViewModel>()
 
@@ -28,10 +29,16 @@ class MainActivity : ComponentActivity() {
                 ) {
                     MainNavHost(
                         navController = navController,
-                        state = viewModel.state
+                        state = viewModel.state,
+                        listeners = this
                     )
                 }
             }
         }
     }
+
+    override fun addNote() {
+//        TODO("Not yet implemented")
+    }
+
 }

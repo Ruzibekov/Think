@@ -1,6 +1,7 @@
 package com.ruzibekov.think.ui.screens.main.components
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -81,7 +82,8 @@ object MainTopBarView {
                     ) { index, text ->
                         ItemTabView(
                             selected = state.selectedCategoryIndex.value == index,
-                            text = text
+                            text = text,
+                            onClick = { state.selectedCategoryIndex.value = index }
                         )
                     }
                 }
@@ -90,7 +92,7 @@ object MainTopBarView {
     }
 
     @Composable
-    private fun ItemTabView(selected: Boolean, text: String) {
+    private fun ItemTabView(selected: Boolean, text: String, onClick: () -> Unit) {
         Box(
             modifier = Modifier.padding(end = 12.dp)
         ) {
@@ -100,7 +102,9 @@ object MainTopBarView {
                     color = ThinkColor.Primary
                 ) {
                     Text(
-                        modifier = Modifier.padding(horizontal = 10.dp, vertical = 6.dp),
+                        modifier = Modifier
+                            .clickable { onClick() }
+                            .padding(horizontal = 10.dp, vertical = 6.dp),
                         text = text,
                         style = MaterialTheme.typography.bodyMedium,
                         fontSize = 12.sp,
