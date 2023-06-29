@@ -6,4 +6,8 @@ import com.ruzibekov.think.ui.state.MainState
 class MainViewModel : ViewModel() {
 
     val state = MainState()
+
+    fun addNote(){
+
+    }
 }
