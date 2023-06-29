@@ -29,6 +29,10 @@ val Typography = Typography(
         fontFamily = Inter,
         fontWeight = FontWeight.SemiBold,
     ),
+    bodyMedium = TextStyle(
+        fontFamily = Inter,
+        fontWeight = FontWeight.Normal
+    )
     /* Other default text styles to override
 
     labelSmall = TextStyle(

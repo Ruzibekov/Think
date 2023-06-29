@@ -18,7 +18,7 @@ object MainScreenView {
     fun Default(state: MainState) {
         Scaffold(
             topBar = {
-                MainTopBarView.Default(state, )
+                MainTopBarView.Default(state)
             },
             floatingActionButton = {
                 MainFloatingActionButtonView.Default()
@@ -29,7 +29,6 @@ object MainScreenView {
             }
         }
     }
-
 
     @Composable
     fun Preview() {
