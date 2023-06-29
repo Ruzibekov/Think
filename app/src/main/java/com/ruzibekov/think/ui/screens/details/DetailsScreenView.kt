@@ -1,4 +1,4 @@
-package com.ruzibekov.think.ui.screens.layout
+package com.ruzibekov.think.ui.screens.details
 
 import androidx.compose.runtime.Composable
 

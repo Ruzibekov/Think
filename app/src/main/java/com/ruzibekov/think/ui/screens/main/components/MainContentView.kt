@@ -1,11 +1,11 @@
-package com.ruzibekov.think.ui.screens.layout
+package com.ruzibekov.think.ui.screens.main.components
 
 import androidx.compose.runtime.Composable
 
-object MainScreenView {
+object MainContentView {
 
     @Composable
     fun Default() {
-        
+
     }
 }
