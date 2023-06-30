@@ -26,7 +26,7 @@ object MainScreenView {
             }
         ) { paddingValues ->
             Box(modifier = Modifier.padding(paddingValues)) {
-                MainContentView.Default()
+                MainContentView.Default(state)
             }
         }
     }

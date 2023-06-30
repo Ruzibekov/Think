@@ -49,7 +49,7 @@ object MainTopBarView {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = stringResource(R.string.app_name).uppercase(),
+                    text = stringResource(R.string.app_name).uppercase(), //todo change text with figma
                     style = MaterialTheme.typography.titleSmall,
                     color = ThinkColor.Font,
                     fontSize = 24.sp,

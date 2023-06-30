@@ -21,7 +21,6 @@ class MainActivity : ComponentActivity(), MainListeners {
         super.onCreate(savedInstanceState)
         setContent {
             val navController = rememberNavController()
-
             ThinkTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
