@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Think</string>
     <string name="hint_search_notes">Search for notes</string>
+    <string name="details_label_title">Title</string>
+    <string name="details_label_description">Description…</string>
 
     <string-array name="main_category_tabs">
         <item>All</item>

@@ -1,4 +1,4 @@
-package com.ruzibekov.think.ui.screens.main.layout
+package com.ruzibekov.think.ui.screens.main
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding

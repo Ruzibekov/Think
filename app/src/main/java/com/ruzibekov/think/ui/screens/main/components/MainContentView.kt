@@ -4,6 +4,7 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
@@ -21,7 +22,7 @@ import androidx.compose.ui.unit.sp
 import com.ruzibekov.data.model.NoteData
 import com.ruzibekov.think.ui.state.MainState
 import com.ruzibekov.think.ui.theme.ThinkColor
-import com.ruzibekov.think.ui.theme.horizontalSpace
+import com.ruzibekov.think.ui.theme.space_20
 
 object MainContentView {
 
@@ -31,12 +32,13 @@ object MainContentView {
     @Composable
     fun Default(state: MainState) {
         LazyVerticalStaggeredGrid(
+            modifier = Modifier.fillMaxSize(),
             columns = StaggeredGridCells.Adaptive(170.dp),
             contentPadding = PaddingValues(
-                start = horizontalSpace,
-                end = horizontalSpace - itemPadding,
-                top = horizontalSpace,
-                bottom = horizontalSpace - itemPadding
+                start = space_20,
+                end = space_20 - itemPadding,
+                top = space_20,
+                bottom = space_20 - itemPadding
             )
         ) {
             items(state.noteList) { data ->

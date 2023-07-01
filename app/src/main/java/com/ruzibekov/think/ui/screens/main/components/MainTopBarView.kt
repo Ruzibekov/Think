@@ -28,7 +28,7 @@ import androidx.compose.ui.unit.sp
 import com.ruzibekov.think.R
 import com.ruzibekov.think.ui.state.MainState
 import com.ruzibekov.think.ui.theme.ThinkColor
-import com.ruzibekov.think.ui.theme.horizontalSpace
+import com.ruzibekov.think.ui.theme.space_20
 
 object MainTopBarView {
 
@@ -63,7 +63,7 @@ object MainTopBarView {
                     onValueChange = { state.searchState.value = it },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = horizontalSpace)
+                        .padding(horizontal = space_20)
                 )
 
                 Spacer(modifier = Modifier.height(18.dp))
@@ -73,8 +73,8 @@ object MainTopBarView {
                 LazyRow(
                     modifier = Modifier.fillMaxWidth(),
                     contentPadding = PaddingValues(
-                        start = horizontalSpace,
-                        end = horizontalSpace - 12.dp
+                        start = space_20,
+                        end = space_20 - 12.dp
                     )
                 ) {
                     itemsIndexed(

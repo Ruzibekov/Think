@@ -10,5 +10,6 @@ import com.ruzibekov.think.mock.MainMockito
 data class MainState(
     val searchState: MutableState<String> = mutableStateOf(""),
     val selectedCategoryIndex: MutableState<Int> = mutableStateOf(0),
-    val noteList: SnapshotStateList<NoteData> = mutableStateListOf(*MainMockito.noteList.toTypedArray())
+    val noteList: SnapshotStateList<NoteData> = mutableStateListOf(*MainMockito.noteList.toTypedArray()),
+    val selectedNoteIndex: MutableState<Int> = mutableStateOf(0)
 )
