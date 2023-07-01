@@ -42,13 +42,20 @@ class MainActivity : ComponentActivity(), MainListeners {
         }
     }
 
-    override fun addNote() {
-        viewModel.addNote()
-    }
-
     override fun openNoteDetails(index: Int) {
         viewModel.state.selectedNoteIndex.value = index
         navController?.navigate(Screen.DETAILS.route)
     }
 
+    override fun openNewNoteScreen() {
+        navController?.navigate(Screen.NEW_NOTE.route)
+    }
+
+    override fun createNewNote() {
+//        TODO("Not yet implemented")
+    }
+
+    override fun addNote() {
+        viewModel.addNote()
+    }
 }

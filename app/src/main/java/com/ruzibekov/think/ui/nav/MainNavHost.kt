@@ -7,6 +7,7 @@ import androidx.navigation.compose.composable
 import com.ruzibekov.think.ui.screens.details.DetailsScreenView
 import com.ruzibekov.think.ui.screens.main.MainScreenView
 import com.ruzibekov.think.ui.screens.main.listeners.MainListeners
+import com.ruzibekov.think.ui.screens.new_note.NewNoteScreenView
 import com.ruzibekov.think.ui.state.MainState
 
 
@@ -23,9 +24,12 @@ fun MainNavHost(navController: NavHostController, state: MainState, listeners: M
         composable(Screen.DETAILS.route) {
             DetailsScreenView.Default(state = state)
         }
+
+        composable(Screen.NEW_NOTE.route) {
+            NewNoteScreenView.Default(listeners = listeners)
+        }
     }
 }
-
 enum class Screen(val route: String) {
-    MAIN("main-route"), DETAILS("details-route")
+    MAIN("main-route"), DETAILS("details-route"), NEW_NOTE("new-note-route")
 }
