@@ -8,6 +8,4 @@ interface MainListeners {
 
     fun createNewNote()
 
-    fun addNote()
-
 }

@@ -7,11 +7,4 @@ class MainViewModel : ViewModel() {
 
     val state = MainState()
 
-    fun fetchNoteList(){
-
-    }
-
-    fun addNote(){
-
-    }
 }

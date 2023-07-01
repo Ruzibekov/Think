@@ -14,7 +14,7 @@ object MainFloatingActionButtonView {
     @Composable
     fun Default(listeners: MainListeners) {
         FloatingActionButton(
-            onClick = { listeners.addNote() },
+            onClick = { listeners.openNewNoteScreen() },
             shape = CircleShape,
             containerColor = ThinkColor.Primary
         ) {

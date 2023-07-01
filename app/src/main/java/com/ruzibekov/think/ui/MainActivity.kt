@@ -55,7 +55,4 @@ class MainActivity : ComponentActivity(), MainListeners {
 //        TODO("Not yet implemented")
     }
 
-    override fun addNote() {
-        viewModel.addNote()
-    }
 }
