@@ -21,7 +21,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -29,6 +28,7 @@ import com.ruzibekov.think.R
 import com.ruzibekov.think.ui.state.MainState
 import com.ruzibekov.think.ui.theme.ThinkColor
 import com.ruzibekov.think.ui.theme.space_20
+import com.ruzibekov.think.utils.Constants
 
 object MainTopBarView {
 
@@ -68,8 +68,6 @@ object MainTopBarView {
 
                 Spacer(modifier = Modifier.height(18.dp))
 
-                val context = LocalContext.current
-
                 LazyRow(
                     modifier = Modifier.fillMaxWidth(),
                     contentPadding = PaddingValues(
@@ -77,14 +75,23 @@ object MainTopBarView {
                         end = space_20 - 12.dp
                     )
                 ) {
-                    itemsIndexed(
-                        context.resources.getStringArray(R.array.main_category_tabs)
-                    ) { index, text ->
+
+                    item {
+                        ItemTabView(
+                            selected = state.selectedCategoryIndex.value == Constants.AllCategoryIndex,
+                            text = stringResource(id = R.string.category_all)
+                        ) {
+                            state.selectedCategoryIndex.value = Constants.AllCategoryIndex
+                        }
+                    }
+
+                    itemsIndexed(state.categoryList) { index, category ->
                         ItemTabView(
                             selected = state.selectedCategoryIndex.value == index,
-                            text = text,
-                            onClick = { state.selectedCategoryIndex.value = index }
-                        )
+                            text = category.title
+                        ) {
+                            state.selectedCategoryIndex.value = index
+                        }
                     }
                 }
             }
@@ -118,7 +125,9 @@ object MainTopBarView {
                     color = Color.Transparent
                 ) {
                     Text(
-                        modifier = Modifier.padding(horizontal = 10.dp, vertical = 6.dp),
+                        modifier = Modifier
+                            .clickable { onClick() }
+                            .padding(horizontal = 10.dp, vertical = 6.dp),
                         text = text,
                         style = MaterialTheme.typography.bodyMedium,
                         fontSize = 12.sp,

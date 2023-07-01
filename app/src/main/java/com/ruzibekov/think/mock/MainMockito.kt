@@ -1,6 +1,7 @@
 package com.ruzibekov.think.mock
 
 import androidx.compose.ui.graphics.toArgb
+import com.ruzibekov.data.model.NoteCategory
 import com.ruzibekov.data.model.NoteData
 import com.ruzibekov.think.ui.theme.ThinkColor
 
@@ -10,22 +11,26 @@ object MainMockito {
         NoteData(
             color = ThinkColor.AzureishWhite.toArgb(),
             title = "test",
-            description = "fdsfdsfdfadsfadsfadsfadsfdsfn.ds,jn;adkljgfnekfnkjadsfndsjklndkjsagsadgf"
+            description = "fdsfdsfdfadsfadsfadsfadsfdsfn.ds,jn;adkljgfnekfnkjadsfndsjklndkjsagsadgf",
+            category = NoteCategory.TO_DO_LIST
         ),
         NoteData(
             color = ThinkColor.PinkLace.toArgb(),
             title = "test",
-            description = "fdsfdsfdsagsadgf"
+            description = "fdsfdsfdsagsadgf",
+            category = NoteCategory.WORK
         ),
         NoteData(
             color = ThinkColor.Flavescent.toArgb(),
             title = "test",
-            description = "fdsfdsfdsagsadgffadsfdsafadsfdsafdsfdsafsadfdsfdsf"
+            description = "fdsfdsfdsagsadgffadsfdsafadsfdsafdsfdsafsadfdsfdsf",
+            category = NoteCategory.SHOPPING
         ),
         NoteData(
             color = ThinkColor.PinkLace.toArgb(),
             title = "test",
-            description = "fdsfdsfdsagsadgf"
+            description = "fdsfdsfdsagsadgf",
+            category = NoteCategory.SHOPPING
         )
     )
 }

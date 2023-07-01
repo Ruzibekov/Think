@@ -23,6 +23,7 @@ import com.ruzibekov.data.model.NoteData
 import com.ruzibekov.think.ui.state.MainState
 import com.ruzibekov.think.ui.theme.ThinkColor
 import com.ruzibekov.think.ui.theme.space_20
+import com.ruzibekov.think.utils.Constants
 
 object MainContentView {
 
@@ -43,9 +44,7 @@ object MainContentView {
                 bottom = space_20 - itemPadding
             )
         ) {
-            items(state.noteList.filter {
-                it.title.contains(state.searchState.value)
-            }) { data ->
+            items(filterNoteList(state)) { data ->
                 Item(noteData = data)
             }
         }
@@ -76,5 +75,17 @@ object MainContentView {
                 )
             }
         }
+    }
+
+    private fun filterNoteList(state: MainState): List<NoteData> {
+        return if (state.selectedCategoryIndex.value != Constants.AllCategoryIndex)
+            state.noteList.filter {
+                it.title.contains(state.searchState.value) &&
+                        it.category.title == (state.categoryList[state.selectedCategoryIndex.value]).title
+            }
+        else
+            state.noteList.filter {
+                it.title.contains(state.searchState.value)
+            }
     }
 }
