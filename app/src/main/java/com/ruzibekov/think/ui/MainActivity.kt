@@ -8,29 +8,35 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.ruzibekov.think.ui.nav.MainNavHost
+import com.ruzibekov.think.ui.nav.Screen
 import com.ruzibekov.think.ui.screens.main.listeners.MainListeners
 import com.ruzibekov.think.ui.theme.ThinkTheme
 
 class MainActivity : ComponentActivity(), MainListeners {
 
     private val viewModel by viewModels<MainViewModel>()
+    private var navController: NavHostController? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            val navController = rememberNavController()
-            ThinkTheme {
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    MainNavHost(
-                        navController = navController,
-                        state = viewModel.state,
-                        listeners = this
-                    )
+            navController = rememberNavController()
+
+            navController?.let { controller ->
+                ThinkTheme {
+                    Surface(
+                        modifier = Modifier.fillMaxSize(),
+                        color = MaterialTheme.colorScheme.background
+                    ) {
+                        MainNavHost(
+                            navController = controller,
+                            state = viewModel.state,
+                            listeners = this
+                        )
+                    }
                 }
             }
         }
@@ -38,6 +44,11 @@ class MainActivity : ComponentActivity(), MainListeners {
 
     override fun addNote() {
         viewModel.addNote()
+    }
+
+    override fun openNoteDetails(index: Int) {
+        viewModel.state.selectedNoteIndex.value = index
+        navController?.navigate(Screen.DETAILS.route)
     }
 
 }

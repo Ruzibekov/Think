@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.ruzibekov.think.ui.screens.details.DetailsScreenView
 import com.ruzibekov.think.ui.screens.main.MainScreenView
 import com.ruzibekov.think.ui.screens.main.listeners.MainListeners
 import com.ruzibekov.think.ui.state.MainState
@@ -20,7 +21,7 @@ fun MainNavHost(navController: NavHostController, state: MainState, listeners: M
         }
 
         composable(Screen.DETAILS.route) {
-
+            DetailsScreenView.Default(state = state)
         }
     }
 }

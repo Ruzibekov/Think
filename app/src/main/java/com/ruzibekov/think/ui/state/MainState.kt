@@ -12,11 +12,10 @@ import com.ruzibekov.think.utils.Constants
 data class MainState(
     val searchState: MutableState<String> = mutableStateOf(""),
 
-    val categoryList: SnapshotStateList<NoteCategory> = mutableStateListOf(
-        *NoteCategory.values().toList().toTypedArray()
-    ),
+    val categoryList: SnapshotStateList<NoteCategory> = mutableStateListOf(*NoteCategory.values().toList().toTypedArray()),
     val selectedCategoryIndex: MutableState<Int> = mutableStateOf(Constants.AllCategoryIndex),
 
     val noteList: SnapshotStateList<NoteData> = mutableStateListOf(*MainMockito.noteList.toTypedArray()),
-    val selectedNoteIndex: MutableState<Int> = mutableStateOf(0)
+    val selectedNoteIndex: MutableState<Int> = mutableStateOf(0),
+
 )

@@ -26,17 +26,9 @@ object MainScreenView {
             }
         ) { paddingValues ->
             Box(modifier = Modifier.padding(paddingValues)) {
-                MainContentView.Default(state)
+                MainContentView.Default(state, listeners)
             }
         }
     }
-
-    @Composable
-    fun Preview() {
-        val state = MainState()
-        val listeners = object : MainListeners {
-            override fun addNote() {}
-        }
-        Default(state, listeners)
-    }
+    
 }
