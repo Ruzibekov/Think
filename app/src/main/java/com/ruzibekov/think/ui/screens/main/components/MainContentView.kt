@@ -26,7 +26,9 @@ import com.ruzibekov.think.ui.theme.space_20
 
 object MainContentView {
 
-    private val itemPadding = 18.dp /** if(this < horizontalSpace)*/
+    private val itemPadding = 18.dp
+
+    /** if(this < horizontalSpace)*/
 
     @OptIn(ExperimentalFoundationApi::class)
     @Composable
@@ -41,7 +43,9 @@ object MainContentView {
                 bottom = space_20 - itemPadding
             )
         ) {
-            items(state.noteList) { data ->
+            items(state.noteList.filter {
+                it.title.contains(state.searchState.value)
+            }) { data ->
                 Item(noteData = data)
             }
         }

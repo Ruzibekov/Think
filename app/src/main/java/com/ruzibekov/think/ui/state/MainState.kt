@@ -12,4 +12,6 @@ data class MainState(
     val selectedCategoryIndex: MutableState<Int> = mutableStateOf(0),
     val noteList: SnapshotStateList<NoteData> = mutableStateListOf(*MainMockito.noteList.toTypedArray()),
     val selectedNoteIndex: MutableState<Int> = mutableStateOf(0)
-)
+){
+
+}
