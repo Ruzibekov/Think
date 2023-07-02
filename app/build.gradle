@@ -75,6 +75,9 @@ dependencies {
     // Dagger-Hilt
     implementation "com.google.dagger:hilt-android:2.44"
     kapt "com.google.dagger:hilt-compiler:2.44"
+
+    // System Controller
+    implementation "com.google.accompanist:accompanist-systemuicontroller:0.30.1"
 }
 
 kapt {

@@ -40,13 +40,6 @@ object MainContentView {
     @Composable
     fun Default(state: MainState, listeners: MainListeners) {
         when {
-            state.noteList.isEmpty() ->
-                Image(
-                    painter = painterResource(id = R.drawable.img_create_your_first_note),
-                    contentDescription = "create your first note image",
-                    modifier = Modifier.fillMaxSize().padding(horizontal = space_20)
-                )
-
             filterNoteList(state).isEmpty() ->
                 Image(
                     painter = painterResource(id = R.drawable.img_file_not_found),

@@ -24,18 +24,18 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.ruzibekov.data.model.constants.Constants
 import com.ruzibekov.think.R
 import com.ruzibekov.think.ui.state.MainState
 import com.ruzibekov.think.ui.theme.ThinkColor
 import com.ruzibekov.think.ui.theme.space_20
-import com.ruzibekov.data.model.constants.Constants
 
 object MainTopBarView {
 
     @Composable
     fun Default(state: MainState) {
         Card(
-            colors = CardDefaults.cardColors(containerColor = ThinkColor.White),
+            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primary),
             elevation = CardDefaults.cardElevation(5.dp),
             shape = RoundedCornerShape(
                 topStart = 0.dp,
@@ -51,7 +51,7 @@ object MainTopBarView {
                 Text(
                     text = stringResource(R.string.app_name).uppercase(), //todo change text with figma
                     style = MaterialTheme.typography.titleSmall,
-                    color = ThinkColor.Font,
+                    color = MaterialTheme.colorScheme.tertiary,
                     fontSize = 24.sp,
                     letterSpacing = 2.16.sp
                 )
@@ -118,7 +118,7 @@ object MainTopBarView {
                         color = ThinkColor.White,
                     )
                 }
-            else
+            else //not selected
                 Surface(
                     shape = RoundedCornerShape(8.dp),
                     border = BorderStroke(1.dp, ThinkColor.LightGray),
@@ -131,7 +131,7 @@ object MainTopBarView {
                         text = text,
                         style = MaterialTheme.typography.bodyMedium,
                         fontSize = 12.sp,
-                        color = ThinkColor.DarkGray,
+                        color = MaterialTheme.colorScheme.tertiary,
                     )
                 }
         }
