@@ -1,8 +1,8 @@
 package com.ruzibekov.think.mock
 
 import androidx.compose.ui.graphics.toArgb
-import com.ruzibekov.data.model.NoteCategory
-import com.ruzibekov.data.model.NoteData
+import com.ruzibekov.domain.model.NoteCategory
+import com.ruzibekov.domain.model.NoteData
 import com.ruzibekov.think.ui.theme.ThinkColor
 
 object MainMockito {

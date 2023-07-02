@@ -10,14 +10,18 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.ruzibekov.domain.model.NoteData
 import com.ruzibekov.think.ui.nav.MainNavHost
 import com.ruzibekov.think.ui.nav.Screen
 import com.ruzibekov.think.ui.screens.main.listeners.MainListeners
 import com.ruzibekov.think.ui.theme.ThinkTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity(), MainListeners {
 
-    private val viewModel by viewModels<MainViewModel>()
+    private val viewModel: MainViewModel by viewModels()
+
     private var navController: NavHostController? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,6 +44,11 @@ class MainActivity : ComponentActivity(), MainListeners {
                 }
             }
         }
+        initialize()
+    }
+
+    private fun initialize(){
+        viewModel.fetchNoteList()
     }
 
     override fun openNoteDetails(index: Int) {
@@ -51,8 +60,16 @@ class MainActivity : ComponentActivity(), MainListeners {
         navController?.navigate(Screen.NEW_NOTE.route)
     }
 
-    override fun createNewNote() {
-//        TODO("Not yet implemented")
+    override fun createNewNote(noteData: NoteData) {
+        viewModel.createNewNote(noteData)
+    }
+
+    override fun updateNote(noteData: NoteData) {
+        viewModel.updateNote(noteData)
+    }
+
+    override fun backToMainScreen() {
+        navController?.popBackStack()
     }
 
 }

@@ -20,11 +20,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.ruzibekov.domain.model.NoteCategory
+import com.ruzibekov.domain.model.NoteData
 import com.ruzibekov.think.R
 import com.ruzibekov.think.ui.screens.details.components.DetailsTextField
 import com.ruzibekov.think.ui.screens.main.listeners.MainListeners
@@ -38,6 +41,9 @@ object NewNoteScreenView {
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     fun Default(listeners: MainListeners) {
+        var noteTitle by remember { mutableStateOf("") }
+        var noteDescription by remember { mutableStateOf("") }
+
         Scaffold(
             topBar = {
                 Row(
@@ -46,9 +52,9 @@ object NewNoteScreenView {
                         .height(44.dp),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween
-                ){
+                ) {
                     IconButton(
-                        onClick = { listeners.createNewNote() }
+                        onClick = { listeners.backToMainScreen() },
                     ) {
                         Icon(
                             painter = painterResource(id = ThinkIcon.Back),
@@ -56,16 +62,32 @@ object NewNoteScreenView {
                             tint = ThinkColor.Dark
                         )
                     }
+
+                    IconButton(
+                        onClick = {
+                            listeners.createNewNote(
+                                NoteData(
+                                    color = getRandomColorArgb(),
+                                    title = noteTitle,
+                                    description = noteDescription,
+                                    category = NoteCategory.WORK //todo change category
+                                )
+                            )
+                        },
+                    ) {
+                        Icon(
+                            painter = painterResource(id = ThinkIcon.Check),
+                            contentDescription = "check icon",
+                            tint = ThinkColor.Dark
+                        )
+                    }
                 }
             }
-        ) { _ ->
-
-            var noteTitle by remember { mutableStateOf("") }
-            var noteDescription by remember { mutableStateOf("") }
-
+        ) { pv ->
             Column(
                 modifier = Modifier
                     .fillMaxSize()
+                    .padding(pv)
                     .background(ThinkColor.White)
                     .padding(space_20)
             ) {
@@ -78,7 +100,8 @@ object NewNoteScreenView {
                         color = ThinkColor.Dark,
                         fontSize = 24.sp,
                         fontWeight = FontWeight.Bold
-                    )
+                    ),
+                    maxLines = 1
                 )
 
                 Spacer(modifier = Modifier.height(6.dp))
@@ -97,4 +120,25 @@ object NewNoteScreenView {
             }
         }
     }
+
+    @Composable
+    fun Preview() {
+        val listeners = object : MainListeners {
+            override fun openNoteDetails(noteId: Int) {}
+            override fun openNewNoteScreen() {}
+            override fun createNewNote(noteData: NoteData) {}
+            override fun updateNote(noteData: NoteData) {}
+            override fun backToMainScreen() {}
+        }
+        Default(listeners = listeners)
+    }
+
+    private fun getRandomColorArgb(): Int =
+        listOf(
+            ThinkColor.PinkLace,
+            ThinkColor.Flavescent,
+            ThinkColor.AzureishWhite,
+            ThinkColor.MagicMint,
+            ThinkColor.MistyRose
+        ).random().toArgb()
 }

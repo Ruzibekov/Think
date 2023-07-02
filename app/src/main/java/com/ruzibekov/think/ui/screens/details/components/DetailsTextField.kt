@@ -6,7 +6,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.unit.sp
 import com.ruzibekov.think.ui.theme.ThinkColor
 
 object DetailsTextField {
@@ -16,14 +15,15 @@ object DetailsTextField {
         value: String,
         onValueChange: (String) -> Unit,
         labelRes: Int,
-        textStyle: TextStyle
+        textStyle: TextStyle,
+        maxLines: Int = Int.MAX_VALUE
     ) {
         Box {
             BasicTextField(
                 value = value,
                 onValueChange = onValueChange,
                 textStyle = textStyle,
-                maxLines = 1,
+                maxLines = maxLines,
             )
 
             if (value.isBlank())
@@ -31,7 +31,6 @@ object DetailsTextField {
                     text = stringResource(labelRes),
                     style = textStyle,
                     color = ThinkColor.Gray,
-                    fontSize = 14.sp,
                 )
         }
     }

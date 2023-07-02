@@ -20,12 +20,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.ruzibekov.data.model.NoteData
+import com.ruzibekov.domain.model.NoteData
 import com.ruzibekov.think.ui.screens.main.listeners.MainListeners
 import com.ruzibekov.think.ui.state.MainState
 import com.ruzibekov.think.ui.theme.ThinkColor
 import com.ruzibekov.think.ui.theme.space_20
-import com.ruzibekov.think.utils.Constants
+import com.ruzibekov.data.model.constants.Constants
 
 object MainContentView {
 

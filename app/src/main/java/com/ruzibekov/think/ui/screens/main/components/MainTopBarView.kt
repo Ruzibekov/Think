@@ -28,7 +28,7 @@ import com.ruzibekov.think.R
 import com.ruzibekov.think.ui.state.MainState
 import com.ruzibekov.think.ui.theme.ThinkColor
 import com.ruzibekov.think.ui.theme.space_20
-import com.ruzibekov.think.utils.Constants
+import com.ruzibekov.data.model.constants.Constants
 
 object MainTopBarView {
 

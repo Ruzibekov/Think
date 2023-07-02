@@ -25,8 +25,10 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.ruzibekov.domain.model.NoteData
 import com.ruzibekov.think.R
 import com.ruzibekov.think.ui.screens.details.components.DetailsTextField
+import com.ruzibekov.think.ui.screens.main.listeners.MainListeners
 import com.ruzibekov.think.ui.state.MainState
 import com.ruzibekov.think.ui.theme.Inter
 import com.ruzibekov.think.ui.theme.ThinkColor
@@ -37,7 +39,12 @@ object DetailsScreenView {
 
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
-    fun Default(state: MainState) {
+    fun Default(state: MainState, listeners: MainListeners) {
+        val note = state.noteList[state.selectedNoteIndex.value]
+
+        var noteTitle by remember { mutableStateOf(note.title) }
+        var noteDescription by remember { mutableStateOf(note.description) }
+
         Scaffold(
             topBar = {
                 Row(
@@ -48,7 +55,7 @@ object DetailsScreenView {
                     horizontalArrangement = Arrangement.SpaceBetween
                 ){
                     IconButton(
-                        onClick = { /*TODO*/ }
+                        onClick = { listeners.backToMainScreen() }
                     ) {
                         Icon(
                             painter = painterResource(id = ThinkIcon.Back),
@@ -56,17 +63,32 @@ object DetailsScreenView {
                             tint = ThinkColor.Dark
                         )
                     }
+
+                    IconButton(
+                        onClick = {
+                            listeners.updateNote(
+                                NoteData(
+                                    color = note.color,
+                                    title = noteTitle,
+                                    description = noteDescription,
+                                    category = note.category //todo change category
+                                )
+                            )
+                        },
+                    ) {
+                        Icon(
+                            painter = painterResource(id = ThinkIcon.Check),
+                            contentDescription = "check icon",
+                            tint = ThinkColor.Dark
+                        )
+                    }
                 }
             }
-        ) { _ ->
-            val note = state.noteList[state.selectedNoteIndex.value]
-
-            var noteTitle by remember { mutableStateOf(note.title) }
-            var noteDescription by remember { mutableStateOf(note.description) }
-
+        ) { pv ->
             Column(
                 modifier = Modifier
                     .fillMaxSize()
+                    .padding(pv)
                     .background(ThinkColor.White)
                     .padding(space_20)
             ) {
@@ -79,7 +101,8 @@ object DetailsScreenView {
                         color = ThinkColor.Dark,
                         fontSize = 24.sp,
                         fontWeight = FontWeight.Bold
-                    )
+                    ),
+                    maxLines = 1
                 )
 
                 Spacer(modifier = Modifier.height(6.dp))
@@ -102,6 +125,13 @@ object DetailsScreenView {
     @Composable
     fun Preview() {
         val state = MainState()
-        Default(state)
+        val listeners = object : MainListeners{
+            override fun openNoteDetails(noteId: Int) {}
+            override fun openNewNoteScreen() {}
+            override fun createNewNote(noteData: NoteData) {}
+            override fun updateNote(noteData: NoteData) {}
+            override fun backToMainScreen() {}
+        }
+        Default(state, listeners)
     }
 }

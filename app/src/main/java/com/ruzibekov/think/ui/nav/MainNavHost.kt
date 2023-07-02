@@ -22,7 +22,7 @@ fun MainNavHost(navController: NavHostController, state: MainState, listeners: M
         }
 
         composable(Screen.DETAILS.route) {
-            DetailsScreenView.Default(state = state)
+            DetailsScreenView.Default(state = state, listeners)
         }
 
         composable(Screen.NEW_NOTE.route) {
@@ -30,6 +30,7 @@ fun MainNavHost(navController: NavHostController, state: MainState, listeners: M
         }
     }
 }
+
 enum class Screen(val route: String) {
     MAIN("main-route"), DETAILS("details-route"), NEW_NOTE("new-note-route")
 }
