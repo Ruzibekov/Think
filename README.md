@@ -40,7 +40,7 @@ When contributing code, please follow the existing code style and guidelines. Wr
 
 If you have any questions, suggestions, or feedback, you can reach out to the project maintainers:
 
-- [Shavkatbek Ruzibekov](ruzibekov44@gmail.com)
+- [Shavkatbek Ruzibekov](https://t.me/ruzibekov_01)
 
 We hope you find the Think App useful and enjoy using it for your note-taking needs!
 
