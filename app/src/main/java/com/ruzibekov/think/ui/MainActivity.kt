@@ -44,10 +44,10 @@ class MainActivity : ComponentActivity(), MainListeners {
                 }
             }
         }
-        initialize()
+        fetchNoteList()
     }
 
-    private fun initialize(){
+    private fun fetchNoteList(){
         viewModel.fetchNoteList()
     }
 
@@ -62,6 +62,8 @@ class MainActivity : ComponentActivity(), MainListeners {
 
     override fun createNewNote(noteData: NoteData) {
         viewModel.createNewNote(noteData)
+        viewModel.fetchNoteList()
+        backToMainScreen()
     }
 
     override fun updateNote(noteData: NoteData) {

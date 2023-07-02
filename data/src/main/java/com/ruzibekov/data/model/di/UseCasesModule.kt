@@ -7,11 +7,11 @@ import com.ruzibekov.domain.usecase.UpdateNoteUseCase
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
+import dagger.hilt.android.components.ViewModelComponent
 
 
 @Module
-@InstallIn(SingletonComponent::class)//todo change to viewmodel component
+@InstallIn(ViewModelComponent::class)//todo change to viewmodel component
 interface UseCasesModule {
 
     @Binds

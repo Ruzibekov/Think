@@ -1,6 +1,7 @@
 package com.ruzibekov.think.ui.screens.main.components
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -18,37 +19,58 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.ruzibekov.data.model.constants.Constants
 import com.ruzibekov.domain.model.NoteData
+import com.ruzibekov.think.R
 import com.ruzibekov.think.ui.screens.main.listeners.MainListeners
 import com.ruzibekov.think.ui.state.MainState
 import com.ruzibekov.think.ui.theme.ThinkColor
 import com.ruzibekov.think.ui.theme.space_20
-import com.ruzibekov.data.model.constants.Constants
 
 object MainContentView {
 
-    private val itemPadding = 18.dp /** if(this < horizontalSpace)*/
+    private val itemPadding = 18.dp
+
+    /** if(this < horizontalSpace)*/
 
     @OptIn(ExperimentalFoundationApi::class)
     @Composable
     fun Default(state: MainState, listeners: MainListeners) {
-        LazyVerticalStaggeredGrid(
-            modifier = Modifier.fillMaxSize(),
-            columns = StaggeredGridCells.Adaptive(170.dp),
-            contentPadding = PaddingValues(
-                start = space_20,
-                end = space_20 - itemPadding,
-                top = space_20,
-                bottom = space_20 - itemPadding
-            )
-        ) {
-            itemsIndexed(filterNoteList(state)) { index, data ->
-                Item(noteData = data) {
-                    listeners.openNoteDetails(index)
+        when {
+            state.noteList.isEmpty() ->
+                Image(
+                    painter = painterResource(id = R.drawable.img_create_your_first_note),
+                    contentDescription = "create your first note image",
+                    modifier = Modifier.fillMaxSize().padding(horizontal = space_20)
+                )
+
+            filterNoteList(state).isEmpty() ->
+                Image(
+                    painter = painterResource(id = R.drawable.img_file_not_found),
+                    contentDescription = "file not found image",
+                    modifier = Modifier.fillMaxSize().padding(horizontal = space_20)
+                )
+
+            else ->
+                LazyVerticalStaggeredGrid(
+                    modifier = Modifier.fillMaxSize(),
+                    columns = StaggeredGridCells.Adaptive(170.dp),
+                    contentPadding = PaddingValues(
+                        start = space_20,
+                        end = space_20 - itemPadding,
+                        top = space_20,
+                        bottom = space_20 - itemPadding
+                    )
+                ) {
+                    itemsIndexed(filterNoteList(state)) { index, data ->
+                        Item(noteData = data) {
+                            listeners.openNoteDetails(index)
+                        }
+                    }
                 }
-            }
         }
     }
 

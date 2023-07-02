@@ -16,7 +16,8 @@ class NoteRepository @Inject constructor(
     private val ioDispatcher: CoroutineDispatcher
 ) : CreateNoteUseCase, GetNoteListUseCase, UpdateNoteUseCase {
 
-    override suspend fun createNote(noteData: NoteData): Flow<Boolean> = flow<Boolean> {
+    override suspend fun createNote(noteData: NoteData): Flow<Boolean> = flow {
+        emit(false)
         dao.createNote(noteData)
     }.flowOn(ioDispatcher)
 
