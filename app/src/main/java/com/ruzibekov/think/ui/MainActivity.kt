@@ -68,6 +68,8 @@ class MainActivity : ComponentActivity(), MainListeners {
 
     override fun updateNote(noteData: NoteData) {
         viewModel.updateNote(noteData)
+        viewModel.fetchNoteList()
+        backToMainScreen()
     }
 
     override fun backToMainScreen() {

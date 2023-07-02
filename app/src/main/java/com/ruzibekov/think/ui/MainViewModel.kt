@@ -40,7 +40,7 @@ class MainViewModel @Inject constructor(
 
     fun updateNote(noteData: NoteData) {
         viewModelScope.launch {
-            updateNoteUseCase.updateNote(noteData)
+            updateNoteUseCase.updateNote(noteData).collect()
         }
     }
 }

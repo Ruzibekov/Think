@@ -25,7 +25,7 @@ class NoteRepository @Inject constructor(
         emit(dao.getAll())
     }.flowOn(ioDispatcher)
 
-    override suspend fun updateNote(note: NoteData) {
-//        TODO("Not yet implemented")
-    }
+    override suspend fun updateNote(note: NoteData) = flow<Boolean> {
+        dao.updateNote(note)
+    }.flowOn(ioDispatcher)
 }

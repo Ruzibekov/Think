@@ -68,10 +68,11 @@ object DetailsScreenView {
                         onClick = {
                             listeners.updateNote(
                                 NoteData(
+                                    id = note.id,
                                     color = note.color,
                                     title = noteTitle,
                                     description = noteDescription,
-                                    category = note.category //todo change category
+                                    category = note.category
                                 )
                             )
                         },
