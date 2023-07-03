@@ -8,7 +8,6 @@ import com.ruzibekov.domain.usecase.GetNoteListUseCase
 import com.ruzibekov.domain.usecase.UpdateNoteUseCase
 import com.ruzibekov.think.ui.state.MainState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -32,15 +31,19 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    fun createNewNote(noteData: NoteData) {
+    fun createNewNote(noteData: NoteData, onSuccess: () -> Unit) {
         viewModelScope.launch {
-            createNoteUseCase.createNote(noteData).collect()
+            createNoteUseCase.createNote(noteData).collect { success ->
+                if(success) onSuccess()
+            }
         }
     }
 
-    fun updateNote(noteData: NoteData) {
+    fun updateNote(noteData: NoteData, onSuccess: () -> Unit) {
         viewModelScope.launch {
-            updateNoteUseCase.updateNote(noteData).collect()
+            updateNoteUseCase.updateNote(noteData).collect { success ->
+                if(success) onSuccess()
+            }
         }
     }
 }

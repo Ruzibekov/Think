@@ -1,4 +1,4 @@
-package com.ruzibekov.think.utils
+package com.ruzibekov.data.model.utils
 
 import android.util.Log
 

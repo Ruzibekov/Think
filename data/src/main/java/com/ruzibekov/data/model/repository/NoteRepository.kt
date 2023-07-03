@@ -19,13 +19,16 @@ class NoteRepository @Inject constructor(
     override suspend fun createNote(noteData: NoteData): Flow<Boolean> = flow {
         emit(false)
         dao.createNote(noteData)
+        emit(true)
     }.flowOn(ioDispatcher)
 
     override suspend fun getNoteList(): Flow<List<NoteData>> = flow {
         emit(dao.getAll())
     }.flowOn(ioDispatcher)
 
-    override suspend fun updateNote(note: NoteData) = flow<Boolean> {
+    override suspend fun updateNote(note: NoteData) = flow {
+        emit(false)
         dao.updateNote(note)
+        emit(true)
     }.flowOn(ioDispatcher)
 }

@@ -61,15 +61,17 @@ class MainActivity : ComponentActivity(), MainListeners {
     }
 
     override fun createNewNote(noteData: NoteData) {
-        viewModel.createNewNote(noteData)
-        viewModel.fetchNoteList()
-        backToMainScreen()
+        viewModel.createNewNote(noteData){
+            viewModel.fetchNoteList()
+            backToMainScreen()
+        }
     }
 
     override fun updateNote(noteData: NoteData) {
-        viewModel.updateNote(noteData)
-        viewModel.fetchNoteList()
-        backToMainScreen()
+        viewModel.updateNote(noteData){
+            viewModel.fetchNoteList()
+            backToMainScreen()
+        }
     }
 
     override fun backToMainScreen() {
