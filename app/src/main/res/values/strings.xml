@@ -4,4 +4,5 @@
     <string name="details_label_title">Title</string>
     <string name="details_label_description">Description…</string>
     <string name="category_all">All</string>
+    <string name="accept">Accept</string>
 </resources>

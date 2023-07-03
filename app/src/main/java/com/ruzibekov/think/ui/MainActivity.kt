@@ -10,6 +10,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.ruzibekov.domain.model.NoteCategory
 import com.ruzibekov.domain.model.NoteData
 import com.ruzibekov.think.ui.nav.MainNavHost
 import com.ruzibekov.think.ui.nav.Screen
@@ -51,12 +52,14 @@ class MainActivity : ComponentActivity(), MainListeners {
         viewModel.fetchNoteList()
     }
 
-    override fun openNoteDetails(index: Int) {
-        viewModel.state.selectedNoteIndex.value = index
+    override fun openNoteDetails(note: NoteData) {
+        viewModel.state.selectedNote.value = note
+        viewModel.state.changeEditNoteData(note.title, note.description, note.category)
         navController?.navigate(Screen.DETAILS.route)
     }
 
     override fun openNewNoteScreen() {
+        viewModel.state.changeEditNoteData("", "", NoteCategory.IDEA)
         navController?.navigate(Screen.NEW_NOTE.route)
     }
 
@@ -76,6 +79,10 @@ class MainActivity : ComponentActivity(), MainListeners {
 
     override fun backToMainScreen() {
         navController?.popBackStack()
+    }
+
+    override fun showCategoryChangeDialog() {
+        viewModel.state.visibleCategoryChangeDialog.value = true
     }
 
 }

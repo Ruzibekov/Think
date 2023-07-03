@@ -1,7 +1,7 @@
-package com.ruzibekov.think.ui.screens.base
+package com.ruzibekov.think.ui.screens.components
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -14,11 +14,9 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
@@ -32,6 +30,7 @@ import androidx.compose.ui.unit.sp
 import com.ruzibekov.think.R
 import com.ruzibekov.think.ui.screens.details.components.DetailsTextField
 import com.ruzibekov.think.ui.screens.main.listeners.MainListeners
+import com.ruzibekov.think.ui.state.MainState
 import com.ruzibekov.think.ui.theme.Inter
 import com.ruzibekov.think.ui.theme.ThinkIcon
 import com.ruzibekov.think.ui.theme.space_20
@@ -41,14 +40,10 @@ object BaseNoteDetailsScreenView {
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     fun Default(
-        defTitle: String = "",
-        defDescription: String = "",
+        state: MainState,
         listeners: MainListeners,
-        onDone: (String, String) -> Unit
+        onDone: () -> Unit
     ) {
-        var noteTitle by remember { mutableStateOf(defTitle) }
-        var noteDescription by remember { mutableStateOf(defDescription) }
-
         Scaffold(
             topBar = {
                 Row(
@@ -56,11 +51,10 @@ object BaseNoteDetailsScreenView {
                         .fillMaxWidth()
                         .height(44.dp),
                     verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-                    IconButton(
-                        onClick = { listeners.backToMainScreen() }
-                    ) {
+                    IconButton(onClick = {
+                        listeners.backToMainScreen()
+                    }) {
                         Icon(
                             painter = painterResource(id = ThinkIcon.Back),
                             contentDescription = "back icon",
@@ -68,11 +62,19 @@ object BaseNoteDetailsScreenView {
                         )
                     }
 
-                    IconButton(
-                        onClick = {
-                            if (noteTitle.isNotBlank() && noteDescription.isNotBlank())
-                                onDone(noteTitle, noteDescription)
+                    Spacer(modifier = Modifier.weight(1f))
+
+                    Text(
+                        text = state.noteEditCategory.value.title,
+                        modifier = Modifier.clickable {
+                            listeners.showCategoryChangeDialog()
                         },
+                    )
+
+                    IconButton(
+                        onClick = onDone,
+                        enabled = state.noteEditTitle.value.isNotBlank() &&
+                                state.noteEditDesc.value.isNotBlank()
                     ) {
                         Icon(
                             painter = painterResource(id = ThinkIcon.Check),
@@ -83,7 +85,6 @@ object BaseNoteDetailsScreenView {
                 }
             }
         ) { pv ->
-
             val focusManager = LocalFocusManager.current
             val descFocusRequest = remember { FocusRequester() }
 
@@ -95,8 +96,8 @@ object BaseNoteDetailsScreenView {
                     .padding(space_20)
             ) {
                 DetailsTextField.Default(
-                    value = noteTitle,
-                    onValueChange = { noteTitle = it },
+                    value = state.noteEditTitle.value,
+                    onValueChange = { state.noteEditTitle.value = it },
                     labelRes = R.string.details_label_title,
                     textStyle = TextStyle(
                         fontFamily = Inter,
@@ -111,8 +112,8 @@ object BaseNoteDetailsScreenView {
                 Spacer(modifier = Modifier.height(6.dp))
 
                 DetailsTextField.Default(
-                    value = noteDescription,
-                    onValueChange = { noteDescription = it },
+                    value = state.noteEditDesc.value,
+                    onValueChange = { state.noteEditDesc.value = it },
                     labelRes = R.string.details_label_description,
                     textStyle = TextStyle(
                         fontFamily = Inter,
@@ -125,5 +126,8 @@ object BaseNoteDetailsScreenView {
                 )
             }
         }
+
+        if (state.visibleCategoryChangeDialog.value)
+            CategoryChangeDialog.Default(state = state)
     }
 }

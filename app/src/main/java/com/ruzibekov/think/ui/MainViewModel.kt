@@ -34,7 +34,7 @@ class MainViewModel @Inject constructor(
     fun createNewNote(noteData: NoteData, onSuccess: () -> Unit) {
         viewModelScope.launch {
             createNoteUseCase.createNote(noteData).collect { success ->
-                if(success) onSuccess()
+                if (success) onSuccess()
             }
         }
     }
@@ -42,7 +42,7 @@ class MainViewModel @Inject constructor(
     fun updateNote(noteData: NoteData, onSuccess: () -> Unit) {
         viewModelScope.launch {
             updateNoteUseCase.updateNote(noteData).collect { success ->
-                if(success) onSuccess()
+                if (success) onSuccess()
             }
         }
     }

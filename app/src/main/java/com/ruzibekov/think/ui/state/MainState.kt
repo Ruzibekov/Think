@@ -4,18 +4,35 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.snapshots.SnapshotStateList
+import com.ruzibekov.data.model.constants.Constants
 import com.ruzibekov.domain.model.NoteCategory
 import com.ruzibekov.domain.model.NoteData
-import com.ruzibekov.think.mock.MainMockito
-import com.ruzibekov.data.model.constants.Constants
 
 data class MainState(
     val searchState: MutableState<String> = mutableStateOf(""),
 
-    val categoryList: SnapshotStateList<NoteCategory> = mutableStateListOf(*NoteCategory.values().toList().toTypedArray()),
+    val categoryList: SnapshotStateList<NoteCategory> = mutableStateListOf(
+        *NoteCategory.values().toList().toTypedArray()
+    ),
     val selectedCategoryIndex: MutableState<Int> = mutableStateOf(Constants.AllCategoryIndex),
 
-    val noteList: SnapshotStateList<NoteData> = mutableStateListOf(*MainMockito.noteList.toTypedArray()),
-    val selectedNoteIndex: MutableState<Int> = mutableStateOf(0),
+    val noteList: SnapshotStateList<NoteData> = mutableStateListOf(),
+    val selectedNote: MutableState<NoteData?> = mutableStateOf(null),
 
-    )
+    val noteEditTitle: MutableState<String> = mutableStateOf(""),
+    val noteEditDesc: MutableState<String> = mutableStateOf(""),
+    val noteEditCategory: MutableState<NoteCategory> = mutableStateOf(NoteCategory.IDEA),
+
+    val visibleCategoryChangeDialog: MutableState<Boolean> = mutableStateOf(false)
+){
+
+    fun changeEditNoteData(
+        title: String,
+        description: String,
+        category: NoteCategory
+    ) {
+        noteEditTitle.value = title
+        noteEditDesc.value = description
+        noteEditCategory.value = category
+    }
+}

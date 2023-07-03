@@ -60,7 +60,7 @@ object MainContentView {
                 ) {
                     itemsIndexed(filterNoteListByTitleAndCategory(state)) { index, data ->
                         Item(noteData = data) {
-                            listeners.openNoteDetails(index)
+                            listeners.openNoteDetails(data)
                         }
                     }
                 }

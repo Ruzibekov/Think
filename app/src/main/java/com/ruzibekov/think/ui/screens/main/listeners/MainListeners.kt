@@ -4,7 +4,7 @@ import com.ruzibekov.domain.model.NoteData
 
 interface MainListeners {
 
-    fun openNoteDetails(noteId: Int)
+    fun openNoteDetails(note: NoteData)
 
     fun openNewNoteScreen()
 
@@ -14,4 +14,5 @@ interface MainListeners {
 
     fun backToMainScreen()
 
+    fun showCategoryChangeDialog()
 }

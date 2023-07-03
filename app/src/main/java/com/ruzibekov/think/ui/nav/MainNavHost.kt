@@ -22,11 +22,11 @@ fun MainNavHost(navController: NavHostController, state: MainState, listeners: M
         }
 
         composable(Screen.DETAILS.route) {
-            DetailsScreenView.Default(state = state, listeners)
+            DetailsScreenView.Default(state, listeners)
         }
 
         composable(Screen.NEW_NOTE.route) {
-            NewNoteScreenView.Default(listeners = listeners)
+            NewNoteScreenView.Default(state, listeners)
         }
     }
 }
