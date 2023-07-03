@@ -69,7 +69,10 @@ object BaseNoteDetailsScreenView {
                     }
 
                     IconButton(
-                        onClick = { onDone(noteTitle, noteDescription) },
+                        onClick = {
+                            if (noteTitle.isNotBlank() && noteDescription.isNotBlank())
+                                onDone(noteTitle, noteDescription)
+                        },
                     ) {
                         Icon(
                             painter = painterResource(id = ThinkIcon.Check),

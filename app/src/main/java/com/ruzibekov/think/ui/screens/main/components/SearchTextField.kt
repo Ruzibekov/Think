@@ -104,7 +104,7 @@ object SearchTextField {
                             contentDescription = "close icon",
                             modifier = Modifier
                                 .align(Alignment.CenterEnd)
-                                .size(18.dp)
+                                .size(20.dp)
                                 .clip(CircleShape)
                                 .background(ThinkColor.Gray)
                                 .clickable { onValueChange("") }
