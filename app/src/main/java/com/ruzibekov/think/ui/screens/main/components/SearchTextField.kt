@@ -1,6 +1,8 @@
 package com.ruzibekov.think.ui.screens.main.components
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -8,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
@@ -20,6 +23,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
@@ -64,9 +68,10 @@ object SearchTextField {
 
                 Spacer(modifier = Modifier.width(12.dp))
 
-                Box {
-                    val searchFocusRequester = remember { FocusRequester() }
-                    val focusManager = LocalFocusManager.current
+                val searchFocusRequester = remember { FocusRequester() }
+                val focusManager = LocalFocusManager.current
+
+                Box(contentAlignment = Alignment.CenterStart) {
                     BasicTextField(
                         value = value,
                         onValueChange = onValueChange,
@@ -92,6 +97,18 @@ object SearchTextField {
                             style = MaterialTheme.typography.bodyMedium,
                             color = ThinkColor.Gray,
                             fontSize = 14.sp,
+                        )
+                    else
+                        Icon(
+                            painter = painterResource(id = ThinkIcon.Close),
+                            contentDescription = "close icon",
+                            modifier = Modifier
+                                .align(Alignment.CenterEnd)
+                                .size(18.dp)
+                                .clip(CircleShape)
+                                .background(ThinkColor.Gray)
+                                .clickable { onValueChange("") }
+                                .padding(2.dp)
                         )
                 }
             }

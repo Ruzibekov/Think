@@ -7,4 +7,5 @@ object ThinkIcon {
     val Add = R.drawable.ic_add
     val Back = R.drawable.ic_back
     val Check = R.drawable.ic_circle_check
+    val Close = R.drawable.ic_close
 }
