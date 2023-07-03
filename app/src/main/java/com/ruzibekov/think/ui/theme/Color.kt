@@ -19,6 +19,7 @@ object ThinkColor {
     val DarkGray = Color(0xFF7C7C7C)
     val Dark = Color(0xFF131313)
     val Black = Color(0xFF000000)
+    val Black_10 = Color(0x1A000000)
 
     val PinkLace = Color(0xFFFFD8F4)
     val Flavescent = Color(0xFFFDE99D)

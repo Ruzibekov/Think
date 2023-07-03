@@ -11,7 +11,6 @@ object DetailsScreenView {
     @Composable
     fun Default(state: MainState, listeners: MainListeners) {
         state.selectedNote.value?.let { note ->
-
             BaseNoteDetailsScreenView.Default(
                 state = state,
                 listeners = listeners,

@@ -9,11 +9,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -32,6 +34,7 @@ import com.ruzibekov.think.ui.screens.details.components.DetailsTextField
 import com.ruzibekov.think.ui.screens.main.listeners.MainListeners
 import com.ruzibekov.think.ui.state.MainState
 import com.ruzibekov.think.ui.theme.Inter
+import com.ruzibekov.think.ui.theme.ThinkColor
 import com.ruzibekov.think.ui.theme.ThinkIcon
 import com.ruzibekov.think.ui.theme.space_20
 
@@ -64,12 +67,17 @@ object BaseNoteDetailsScreenView {
 
                     Spacer(modifier = Modifier.weight(1f))
 
-                    Text(
-                        text = state.noteEditCategory.value.title,
-                        modifier = Modifier.clickable {
-                            listeners.showCategoryChangeDialog()
-                        },
-                    )
+                    Surface(
+                        shape = RoundedCornerShape(10.dp),
+                        color = ThinkColor.Black_10
+                    ) {
+                        Text(
+                            text = state.noteEditCategory.value.title,
+                            modifier = Modifier
+                                .clickable { listeners.showCategoryChangeDialog() }
+                                .padding(horizontal = 8.dp, vertical = 3.dp),
+                        )
+                    }
 
                     IconButton(
                         onClick = onDone,
