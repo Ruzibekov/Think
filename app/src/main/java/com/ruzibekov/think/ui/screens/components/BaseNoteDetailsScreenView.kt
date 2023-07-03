@@ -55,17 +55,17 @@ object BaseNoteDetailsScreenView {
                         .height(44.dp),
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
-                    IconButton(onClick = {
-                        listeners.backToMainScreen()
-                    }) {
-                        Icon(
-                            painter = painterResource(id = ThinkIcon.Back),
-                            contentDescription = "back icon",
-                            tint = MaterialTheme.colorScheme.tertiary,
-                        )
-                    }
+
+                    ItemIcon(icon = ThinkIcon.Back, onClick = { listeners.backToMainScreen() })
 
                     Spacer(modifier = Modifier.weight(1f))
+
+                    ItemIcon(
+                        icon = ThinkIcon.Delete,
+                        onClick = {
+                            state.selectedNote.value?.let { listeners.deleteNote(it) }
+                        }
+                    )
 
                     Surface(
                         shape = RoundedCornerShape(10.dp),
@@ -79,17 +79,12 @@ object BaseNoteDetailsScreenView {
                         )
                     }
 
-                    IconButton(
+                    ItemIcon(
+                        icon = ThinkIcon.Check,
                         onClick = onDone,
                         enabled = state.noteEditTitle.value.isNotBlank() &&
                                 state.noteEditDesc.value.isNotBlank()
-                    ) {
-                        Icon(
-                            painter = painterResource(id = ThinkIcon.Check),
-                            contentDescription = "check icon",
-                            tint = MaterialTheme.colorScheme.tertiary,
-                        )
-                    }
+                    )
                 }
             }
         ) { pv ->
@@ -137,5 +132,19 @@ object BaseNoteDetailsScreenView {
 
         if (state.visibleCategoryChangeDialog.value)
             CategoryChangeDialog.Default(state = state)
+    }
+
+    @Composable
+    private fun ItemIcon(icon: Int, onClick: () -> Unit, enabled: Boolean = true) {
+        IconButton(
+            onClick = onClick,
+            enabled = enabled
+        ) {
+            Icon(
+                painter = painterResource(icon),
+                contentDescription = "icon",
+                tint = MaterialTheme.colorScheme.tertiary,
+            )
+        }
     }
 }

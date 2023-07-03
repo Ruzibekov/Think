@@ -39,6 +39,7 @@ object DetailsScreenView {
             override fun updateNote(noteData: NoteData) {}
             override fun backToMainScreen() {}
             override fun showCategoryChangeDialog() {}
+            override fun deleteNote(note: NoteData) {}
         }
         Default(state, listeners)
     }

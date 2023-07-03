@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ruzibekov.domain.model.NoteData
 import com.ruzibekov.domain.usecase.CreateNoteUseCase
+import com.ruzibekov.domain.usecase.DeleteNoteUseCase
 import com.ruzibekov.domain.usecase.GetNoteListUseCase
 import com.ruzibekov.domain.usecase.UpdateNoteUseCase
 import com.ruzibekov.think.ui.state.MainState
@@ -16,6 +17,7 @@ class MainViewModel @Inject constructor(
     private val createNoteUseCase: CreateNoteUseCase,
     private val getNoteListUseCase: GetNoteListUseCase,
     private val updateNoteUseCase: UpdateNoteUseCase,
+    private val deleteNoteUseCase: DeleteNoteUseCase
 ) : ViewModel() {
 
     val state = MainState()
@@ -43,6 +45,14 @@ class MainViewModel @Inject constructor(
         viewModelScope.launch {
             updateNoteUseCase.updateNote(noteData).collect { success ->
                 if (success) onSuccess()
+            }
+        }
+    }
+
+    fun deleteNote(note: NoteData, onSuccess: () -> Unit){
+        viewModelScope.launch {
+            deleteNoteUseCase.deleteNote(note).collect { success ->
+                if(success) onSuccess()
             }
         }
     }

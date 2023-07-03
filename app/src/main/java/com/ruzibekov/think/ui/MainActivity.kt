@@ -85,4 +85,11 @@ class MainActivity : ComponentActivity(), MainListeners {
         viewModel.state.visibleCategoryChangeDialog.value = true
     }
 
+    override fun deleteNote(note: NoteData) {
+        viewModel.deleteNote(note){
+            viewModel.fetchNoteList()
+            backToMainScreen()
+        }
+    }
+
 }

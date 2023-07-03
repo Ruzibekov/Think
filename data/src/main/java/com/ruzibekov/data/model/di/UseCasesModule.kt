@@ -2,6 +2,7 @@ package com.ruzibekov.data.model.di
 
 import com.ruzibekov.data.model.repository.NoteRepository
 import com.ruzibekov.domain.usecase.CreateNoteUseCase
+import com.ruzibekov.domain.usecase.DeleteNoteUseCase
 import com.ruzibekov.domain.usecase.GetNoteListUseCase
 import com.ruzibekov.domain.usecase.UpdateNoteUseCase
 import dagger.Binds
@@ -22,4 +23,7 @@ interface UseCasesModule {
 
     @Binds
     fun bindUpdateNoteUseCase(repository: NoteRepository): UpdateNoteUseCase
+
+    @Binds
+    fun bindDeleteNoteUseCase(repository: NoteRepository): DeleteNoteUseCase
 }

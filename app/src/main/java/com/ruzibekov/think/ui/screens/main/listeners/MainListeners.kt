@@ -15,4 +15,6 @@ interface MainListeners {
     fun backToMainScreen()
 
     fun showCategoryChangeDialog()
+
+    fun deleteNote(note: NoteData)
 }
