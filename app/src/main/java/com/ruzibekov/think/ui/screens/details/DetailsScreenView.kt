@@ -90,7 +90,7 @@ object DetailsScreenView {
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(pv)
-                    .background(MaterialTheme.colorScheme.primary)
+                    .background(MaterialTheme.colorScheme.secondary)
                     .padding(space_20)
             ) {
                 DetailsTextField.Default(

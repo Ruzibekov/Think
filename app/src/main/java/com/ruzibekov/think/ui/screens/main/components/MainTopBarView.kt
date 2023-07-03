@@ -35,7 +35,7 @@ object MainTopBarView {
     @Composable
     fun Default(state: MainState) {
         Card(
-            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primary),
+            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondary),
             elevation = CardDefaults.cardElevation(5.dp),
             shape = RoundedCornerShape(
                 topStart = 0.dp,

@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -59,7 +60,7 @@ object NewNoteScreenView {
                         Icon(
                             painter = painterResource(id = ThinkIcon.Back),
                             contentDescription = "back icon",
-                            tint = ThinkColor.Dark
+                            tint = MaterialTheme.colorScheme.tertiary,
                         )
                     }
 
@@ -78,7 +79,7 @@ object NewNoteScreenView {
                         Icon(
                             painter = painterResource(id = ThinkIcon.Check),
                             contentDescription = "check icon",
-                            tint = ThinkColor.Dark
+                            tint = MaterialTheme.colorScheme.tertiary,
                         )
                     }
                 }
@@ -88,7 +89,7 @@ object NewNoteScreenView {
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(pv)
-                    .background(ThinkColor.White)
+                    .background(MaterialTheme.colorScheme.secondary)
                     .padding(space_20)
             ) {
                 DetailsTextField.Default(
@@ -97,7 +98,7 @@ object NewNoteScreenView {
                     labelRes = R.string.details_label_title,
                     textStyle = TextStyle(
                         fontFamily = Inter,
-                        color = ThinkColor.Dark,
+                        color = MaterialTheme.colorScheme.tertiary,
                         fontSize = 24.sp,
                         fontWeight = FontWeight.Bold
                     ),
@@ -112,7 +113,7 @@ object NewNoteScreenView {
                     labelRes = R.string.details_label_description,
                     textStyle = TextStyle(
                         fontFamily = Inter,
-                        color = ThinkColor.Dark,
+                        color = MaterialTheme.colorScheme.tertiary,
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Normal
                     )

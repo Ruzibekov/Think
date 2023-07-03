@@ -40,7 +40,7 @@ object MainContentView {
     @Composable
     fun Default(state: MainState, listeners: MainListeners) {
         when {
-            filterNoteList(state).isEmpty() ->
+            filterNoteListByTitleAndCategory(state).isEmpty() ->
                 Image(
                     painter = painterResource(id = R.drawable.img_file_not_found),
                     contentDescription = "file not found image",
@@ -58,7 +58,7 @@ object MainContentView {
                         bottom = space_20 - itemPadding
                     )
                 ) {
-                    itemsIndexed(filterNoteList(state)) { index, data ->
+                    itemsIndexed(filterNoteListByTitleAndCategory(state)) { index, data ->
                         Item(noteData = data) {
                             listeners.openNoteDetails(index)
                         }
@@ -97,15 +97,15 @@ object MainContentView {
         }
     }
 
-    private fun filterNoteList(state: MainState): List<NoteData> {
+    private fun filterNoteListByTitleAndCategory(state: MainState): List<NoteData> {
         return if (state.selectedCategoryIndex.value != Constants.AllCategoryIndex)
             state.noteList.filter {
-                it.title.contains(state.searchState.value) &&
+                it.title.lowercase().contains(state.searchState.value.lowercase()) &&
                         it.category.title == (state.categoryList[state.selectedCategoryIndex.value]).title
             }
         else
             state.noteList.filter {
-                it.title.contains(state.searchState.value)
+                it.title.lowercase().contains(state.searchState.value.lowercase())
             }
     }
 }

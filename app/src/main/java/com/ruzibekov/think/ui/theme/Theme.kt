@@ -12,14 +12,14 @@ import androidx.core.view.WindowCompat
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 private val DarkColorScheme = darkColorScheme(
-    primary = ThinkColor.Dark,
-    secondary = PurpleGrey80,
+    primary = ThinkColor.White,
+    secondary = ThinkColor.Dark,
     tertiary = ThinkColor.White,
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = ThinkColor.White,
-    secondary = PurpleGrey40,
+    primary = ThinkColor.Dark,
+    secondary = ThinkColor.White,
     tertiary = ThinkColor.Font,
 
     /* Other default colors to override
@@ -48,7 +48,7 @@ fun ThinkTheme(
 
     if (!view.isInEditMode) {
         SideEffect {
-            uiController.setStatusBarColor(color = colorScheme.primary)
+            uiController.setStatusBarColor(color = colorScheme.secondary)
             val window = (view.context as Activity).window
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = !darkTheme
         }
