@@ -3,7 +3,7 @@ package com.ruzibekov.think.ui.screens.new_note
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.toArgb
 import com.ruzibekov.domain.model.NoteData
-import com.ruzibekov.think.ui.screens.components.BaseNoteDetailsScreenView
+import com.ruzibekov.think.ui.screens.components.base.BaseNoteDetailsScreenView
 import com.ruzibekov.think.ui.screens.main.listeners.MainListeners
 import com.ruzibekov.think.ui.state.MainState
 import com.ruzibekov.think.ui.theme.ThinkColor

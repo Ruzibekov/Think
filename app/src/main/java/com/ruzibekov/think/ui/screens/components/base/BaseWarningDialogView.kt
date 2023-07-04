@@ -1,4 +1,4 @@
-package com.ruzibekov.think.ui.screens.components
+package com.ruzibekov.think.ui.screens.components.base
 
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
@@ -9,36 +9,39 @@ import com.ruzibekov.think.R
 import com.ruzibekov.think.ui.screens.main.listeners.MainListeners
 import com.ruzibekov.think.ui.state.MainState
 
-object WarningCancelChangingDialog {
+object BaseWarningDialogView {
 
     @Composable
-    fun Default(state: MainState, listeners: MainListeners) {
-
+    fun Default(
+        state: MainState,
+        listeners: MainListeners,
+        textRes: Int,
+        onAccept: () -> Unit,
+        onDismiss: () -> Unit
+    ) {
         AlertDialog(
-            onDismissRequest = {
-                state.showWarningCancelChangingDialog.value = false
-            },
+            onDismissRequest = onDismiss,
             title = {
                 Text(text = stringResource(R.string.warning))
             },
             text = {
-                Text(text = stringResource(R.string.warning_cancel_changing_text))
+                Text(text = stringResource(textRes))
             },
             dismissButton = {
                 ButtonView(
                     textRes = R.string.cancel,
-                    onClick = { state.showWarningCancelChangingDialog.value = false }
+                    onClick = { onDismiss() }
                 )
             },
             confirmButton = {
                 ButtonView(
                     textRes = R.string.accept,
                     onClick = {
-                        state.showWarningCancelChangingDialog.value = false
-                        listeners.onBackStack()
+                        onAccept()
+                        onDismiss()
                     }
                 )
-            },
+            }
         )
     }
 

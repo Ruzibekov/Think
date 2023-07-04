@@ -2,7 +2,7 @@ package com.ruzibekov.think.ui.screens.details
 
 import androidx.compose.runtime.Composable
 import com.ruzibekov.domain.model.NoteData
-import com.ruzibekov.think.ui.screens.components.BaseNoteDetailsScreenView
+import com.ruzibekov.think.ui.screens.components.base.BaseNoteDetailsScreenView
 import com.ruzibekov.think.ui.screens.main.listeners.MainListeners
 import com.ruzibekov.think.ui.state.MainState
 
@@ -40,6 +40,8 @@ object DetailsScreenView {
             override fun updateNote(noteData: NoteData) {}
             override fun onBackStack() {}
             override fun showCategoryChangeDialog() {}
+            override fun showWarningCancelChangeDialog() {}
+            override fun showDeletionWarningDialog() {}
             override fun deleteNote(note: NoteData) {}
         }
         Default(state, listeners)

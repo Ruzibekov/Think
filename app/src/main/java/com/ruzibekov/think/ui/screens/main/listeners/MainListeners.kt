@@ -18,5 +18,7 @@ interface MainListeners {
 
     fun showWarningCancelChangeDialog()
 
+    fun showDeletionWarningDialog()
+
     fun deleteNote(note: NoteData)
 }

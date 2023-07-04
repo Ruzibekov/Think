@@ -1,4 +1,4 @@
-package com.ruzibekov.think.ui.screens.components
+package com.ruzibekov.think.ui.screens.components.base
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -18,6 +18,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ruzibekov.think.R
+import com.ruzibekov.think.ui.screens.components.CategoryChangeDialog
+import com.ruzibekov.think.ui.screens.components.WarningChangingInvalidDialog
+import com.ruzibekov.think.ui.screens.components.WarningDeletionDialog
 import com.ruzibekov.think.ui.screens.details.components.DetailsTextField
 import com.ruzibekov.think.ui.screens.main.listeners.MainListeners
 import com.ruzibekov.think.ui.state.MainState
@@ -56,7 +59,7 @@ object BaseNoteDetailsScreenView {
                         ItemIcon(
                             icon = ThinkIcon.Delete,
                             onClick = {
-                                state.selectedNote.value?.let { listeners.deleteNote(it) }
+                                state.selectedNote.value?.let { listeners.showDeletionWarningDialog() }
                             }
                         )
 
@@ -125,8 +128,12 @@ object BaseNoteDetailsScreenView {
 
         if (state.showCategoryChangeDialog.value)
             CategoryChangeDialog.Default(state = state)
-        else if (state.showWarningCancelChangingDialog.value)
-            WarningCancelChangingDialog.Default(state, listeners)
+
+        else if (state.showWarningChangesInvalid.value)
+            WarningChangingInvalidDialog.Default(state, listeners)
+
+        else if (state.showDeletionWarningDialog.value)
+            WarningDeletionDialog.Default(state, listeners)
     }
 
     @Composable

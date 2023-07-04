@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 class NoteRepository @Inject constructor(
     private val dao: NoteDao,
-    private val ioDispatcher: CoroutineDispatcher
+    private val ioDispatcher: CoroutineDispatcher,
 ) : CreateNoteUseCase, GetNoteListUseCase, UpdateNoteUseCase, DeleteNoteUseCase {
 
     override suspend fun createNote(noteData: NoteData): Flow<Boolean> = flow {

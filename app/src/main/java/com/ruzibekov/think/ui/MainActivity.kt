@@ -86,8 +86,13 @@ class MainActivity : ComponentActivity(), MainListeners {
     }
 
     override fun showWarningCancelChangeDialog() {
-        viewModel.state.showWarningCancelChangingDialog.value = true
+        viewModel.state.showWarningChangesInvalid.value = true
     }
+
+    override fun showDeletionWarningDialog() {
+        viewModel.state.showDeletionWarningDialog.value = true
+    }
+
 
     override fun deleteNote(note: NoteData) {
         viewModel.deleteNote(note){
