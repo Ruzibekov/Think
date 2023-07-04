@@ -31,6 +31,8 @@ class MainViewModel @Inject constructor(
                 }
             }
         }
+
+
     }
 
     fun createNewNote(noteData: NoteData, onSuccess: () -> Unit) {

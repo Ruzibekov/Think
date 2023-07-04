@@ -66,29 +66,33 @@ class MainActivity : ComponentActivity(), MainListeners {
     override fun createNewNote(noteData: NoteData) {
         viewModel.createNewNote(noteData){
             viewModel.fetchNoteList()
-            backToMainScreen()
+            onBackStack()
         }
     }
 
     override fun updateNote(noteData: NoteData) {
         viewModel.updateNote(noteData){
             viewModel.fetchNoteList()
-            backToMainScreen()
+            onBackStack()
         }
     }
 
-    override fun backToMainScreen() {
+    override fun onBackStack() {
         navController?.popBackStack()
     }
 
     override fun showCategoryChangeDialog() {
-        viewModel.state.visibleCategoryChangeDialog.value = true
+        viewModel.state.showCategoryChangeDialog.value = true
+    }
+
+    override fun showWarningCancelChangeDialog() {
+        viewModel.state.showWarningCancelChangingDialog.value = true
     }
 
     override fun deleteNote(note: NoteData) {
         viewModel.deleteNote(note){
             viewModel.fetchNoteList()
-            backToMainScreen()
+            onBackStack()
         }
     }
 

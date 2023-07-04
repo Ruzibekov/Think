@@ -2,21 +2,9 @@ package com.ruzibekov.think.ui.screens.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -45,7 +33,8 @@ object BaseNoteDetailsScreenView {
     fun Default(
         state: MainState,
         listeners: MainListeners,
-        onDone: () -> Unit
+        onDone: () -> Unit,
+        onDeleteButton: Boolean = false
     ) {
         Scaffold(
             topBar = {
@@ -56,16 +45,20 @@ object BaseNoteDetailsScreenView {
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
 
-                    ItemIcon(icon = ThinkIcon.Back, onClick = { listeners.backToMainScreen() })
+                    ItemIcon(
+                        icon = ThinkIcon.Back,
+                        onClick = { listeners.showWarningCancelChangeDialog() }
+                    )
 
                     Spacer(modifier = Modifier.weight(1f))
 
-                    ItemIcon(
-                        icon = ThinkIcon.Delete,
-                        onClick = {
-                            state.selectedNote.value?.let { listeners.deleteNote(it) }
-                        }
-                    )
+                    if (onDeleteButton)
+                        ItemIcon(
+                            icon = ThinkIcon.Delete,
+                            onClick = {
+                                state.selectedNote.value?.let { listeners.deleteNote(it) }
+                            }
+                        )
 
                     Surface(
                         shape = RoundedCornerShape(10.dp),
@@ -130,12 +123,18 @@ object BaseNoteDetailsScreenView {
             }
         }
 
-        if (state.visibleCategoryChangeDialog.value)
+        if (state.showCategoryChangeDialog.value)
             CategoryChangeDialog.Default(state = state)
+        else if (state.showWarningCancelChangingDialog.value)
+            WarningCancelChangingDialog.Default(state, listeners)
     }
 
     @Composable
-    private fun ItemIcon(icon: Int, onClick: () -> Unit, enabled: Boolean = true) {
+    private fun ItemIcon(
+        icon: Int,
+        onClick: () -> Unit,
+        enabled: Boolean = true
+    ) {
         IconButton(
             onClick = onClick,
             enabled = enabled

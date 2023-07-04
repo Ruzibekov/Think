@@ -24,7 +24,8 @@ object DetailsScreenView {
                             category = state.noteEditCategory.value
                         )
                     )
-                }
+                },
+                onDeleteButton = true
             )
         }
     }
@@ -37,7 +38,7 @@ object DetailsScreenView {
             override fun openNewNoteScreen() {}
             override fun createNewNote(noteData: NoteData) {}
             override fun updateNote(noteData: NoteData) {}
-            override fun backToMainScreen() {}
+            override fun onBackStack() {}
             override fun showCategoryChangeDialog() {}
             override fun deleteNote(note: NoteData) {}
         }

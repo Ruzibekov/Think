@@ -23,7 +23,8 @@ data class MainState(
     val noteEditDesc: MutableState<String> = mutableStateOf(""),
     val noteEditCategory: MutableState<NoteCategory> = mutableStateOf(NoteCategory.IDEA),
 
-    val visibleCategoryChangeDialog: MutableState<Boolean> = mutableStateOf(false)
+    val showCategoryChangeDialog: MutableState<Boolean> = mutableStateOf(false),
+    val showWarningCancelChangingDialog: MutableState<Boolean> = mutableStateOf(false),
 ){
 
     fun changeEditNoteData(

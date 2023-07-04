@@ -5,4 +5,7 @@
     <string name="details_label_description">Description…</string>
     <string name="category_all">All</string>
     <string name="accept">Accept</string>
+    <string name="cancel">Cancel</string>
+    <string name="warning">Warning</string>
+    <string name="warning_cancel_changing_text">You want to undo all change</string>
 </resources>

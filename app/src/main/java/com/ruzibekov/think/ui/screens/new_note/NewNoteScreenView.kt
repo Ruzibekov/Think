@@ -14,17 +14,18 @@ object NewNoteScreenView {
     fun Default(state: MainState, listeners: MainListeners) {
         BaseNoteDetailsScreenView.Default(
             state = state,
-            listeners = listeners
-        ) {
-            listeners.createNewNote(
-                NoteData(
-                    color = getRandomColorArgb(),
-                    title = state.noteEditTitle.value,
-                    description = state.noteEditDesc.value,
-                    category = state.noteEditCategory.value
+            listeners = listeners,
+            onDone = {
+                listeners.createNewNote(
+                    NoteData(
+                        color = getRandomColorArgb(),
+                        title = state.noteEditTitle.value,
+                        description = state.noteEditDesc.value,
+                        category = state.noteEditCategory.value
+                    )
                 )
-            )
-        }
+            }
+        )
     }
 
     private fun getRandomColorArgb(): Int =

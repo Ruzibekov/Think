@@ -12,9 +12,11 @@ interface MainListeners {
 
     fun updateNote(noteData: NoteData)
 
-    fun backToMainScreen()
+    fun onBackStack()
 
     fun showCategoryChangeDialog()
+
+    fun showWarningCancelChangeDialog()
 
     fun deleteNote(note: NoteData)
 }
