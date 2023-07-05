@@ -1,6 +1,7 @@
 package com.ruzibekov.think.ui
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -12,6 +13,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.ruzibekov.domain.model.NoteCategory
 import com.ruzibekov.domain.model.NoteData
+import com.ruzibekov.think.R
 import com.ruzibekov.think.ui.nav.MainNavHost
 import com.ruzibekov.think.ui.nav.Screen
 import com.ruzibekov.think.ui.screens.main.listeners.MainListeners
@@ -67,13 +69,14 @@ class MainActivity : ComponentActivity(), MainListeners {
         viewModel.createNewNote(noteData){
             viewModel.fetchNoteList()
             onBackStack()
+            showToast(textRes = R.string.toast_note_created)
         }
     }
 
     override fun updateNote(noteData: NoteData) {
         viewModel.updateNote(noteData){
             viewModel.fetchNoteList()
-            onBackStack()
+            showToast(textRes = R.string.toast_changes_saved)
         }
     }
 
@@ -93,12 +96,15 @@ class MainActivity : ComponentActivity(), MainListeners {
         viewModel.state.showDeletionWarningDialog.value = true
     }
 
-
     override fun deleteNote(note: NoteData) {
         viewModel.deleteNote(note){
             viewModel.fetchNoteList()
             onBackStack()
         }
+    }
+
+    private fun showToast(textRes: Int){
+        Toast.makeText(this, getString(textRes), Toast.LENGTH_LONG).show()
     }
 
 }

@@ -1,6 +1,8 @@
 package com.ruzibekov.think.ui.screens.details
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import com.ruzibekov.domain.model.NoteData
 import com.ruzibekov.think.ui.screens.components.base.BaseNoteDetailsScreenView
 import com.ruzibekov.think.ui.screens.main.listeners.MainListeners
@@ -25,7 +27,8 @@ object DetailsScreenView {
                         )
                     )
                 },
-                onDeleteButton = true
+                onDeleteButton = true,
+                saveButtonIsActive = remember { mutableStateOf(false) }
             )
         }
     }

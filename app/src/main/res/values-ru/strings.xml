@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Think</string>
+    <string name="toast_note_created">Заметка успешно создана</string>
 </resources>

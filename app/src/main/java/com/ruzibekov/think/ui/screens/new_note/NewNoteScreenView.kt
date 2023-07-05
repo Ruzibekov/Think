@@ -1,6 +1,8 @@
 package com.ruzibekov.think.ui.screens.new_note
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.toArgb
 import com.ruzibekov.domain.model.NoteData
 import com.ruzibekov.think.ui.screens.components.base.BaseNoteDetailsScreenView
@@ -24,7 +26,8 @@ object NewNoteScreenView {
                         category = state.noteEditCategory.value
                     )
                 )
-            }
+            },
+            saveButtonIsActive = remember { mutableStateOf(false) }
         )
     }
 

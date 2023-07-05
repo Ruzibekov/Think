@@ -1,10 +1,12 @@
 package com.ruzibekov.think.ui.screens.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -28,7 +30,12 @@ object CategoryChangeDialog {
                 ) {
                     state.categoryList.forEach { category ->
 
-                        Row(verticalAlignment = Alignment.CenterVertically) {
+                        Row(
+                            modifier = Modifier
+                                .clip(MaterialTheme.shapes.medium)
+                                .clickable { current = category },
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
                             RadioButton(
                                 selected = category.title == current.title,
                                 onClick = { current = category }

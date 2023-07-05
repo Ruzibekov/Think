@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -37,8 +38,13 @@ object BaseNoteDetailsScreenView {
         state: MainState,
         listeners: MainListeners,
         onDone: () -> Unit,
-        onDeleteButton: Boolean = false
+        onDeleteButton: Boolean = false,
+        saveButtonIsActive: MutableState<Boolean>
     ) {
+        val focusManager = LocalFocusManager.current
+        val descFocusRequest = remember { FocusRequester() }
+
+
         Scaffold(
             topBar = {
                 Row(
@@ -77,16 +83,16 @@ object BaseNoteDetailsScreenView {
 
                     ItemIcon(
                         icon = ThinkIcon.Check,
-                        onClick = onDone,
-                        enabled = state.noteEditTitle.value.isNotBlank() &&
-                                state.noteEditDesc.value.isNotBlank()
+                        onClick = {
+                            onDone()
+                            focusManager.clearFocus()
+                            saveButtonIsActive.value = false
+                        },
+                        enabled = saveButtonIsActive.value
                     )
                 }
             }
         ) { pv ->
-            val focusManager = LocalFocusManager.current
-            val descFocusRequest = remember { FocusRequester() }
-
             Column(
                 modifier = Modifier
                     .fillMaxSize()
@@ -96,7 +102,10 @@ object BaseNoteDetailsScreenView {
             ) {
                 DetailsTextField.Default(
                     value = state.noteEditTitle.value,
-                    onValueChange = { state.noteEditTitle.value = it },
+                    onValueChange = {
+                        state.noteEditTitle.value = it
+                        saveButtonIsActive.value = checkIsActiveButton(state)
+                    },
                     labelRes = R.string.details_label_title,
                     textStyle = TextStyle(
                         fontFamily = Inter,
@@ -112,7 +121,10 @@ object BaseNoteDetailsScreenView {
 
                 DetailsTextField.Default(
                     value = state.noteEditDesc.value,
-                    onValueChange = { state.noteEditDesc.value = it },
+                    onValueChange = {
+                        state.noteEditDesc.value = it
+                        saveButtonIsActive.value = checkIsActiveButton(state)
+                    },
                     labelRes = R.string.details_label_description,
                     textStyle = TextStyle(
                         fontFamily = Inter,
@@ -128,10 +140,8 @@ object BaseNoteDetailsScreenView {
 
         if (state.showCategoryChangeDialog.value)
             CategoryChangeDialog.Default(state = state)
-
         else if (state.showWarningChangesInvalid.value)
             WarningChangingInvalidDialog.Default(state, listeners)
-
         else if (state.showDeletionWarningDialog.value)
             WarningDeletionDialog.Default(state, listeners)
     }
@@ -149,8 +159,12 @@ object BaseNoteDetailsScreenView {
             Icon(
                 painter = painterResource(icon),
                 contentDescription = "icon",
-                tint = MaterialTheme.colorScheme.tertiary,
+                tint = if (enabled) MaterialTheme.colorScheme.tertiary else ThinkColor.LightGray,
             )
         }
+    }
+
+    private fun checkIsActiveButton(state: MainState): Boolean {
+        return state.noteEditTitle.value.isNotBlank() && state.noteEditDesc.value.isNotBlank()
     }
 }
