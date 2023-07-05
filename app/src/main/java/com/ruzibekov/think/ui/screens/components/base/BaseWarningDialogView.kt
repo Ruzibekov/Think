@@ -2,12 +2,15 @@ package com.ruzibekov.think.ui.screens.components.base
 
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import com.ruzibekov.think.R
 import com.ruzibekov.think.ui.screens.main.listeners.MainListeners
 import com.ruzibekov.think.ui.state.MainState
+import com.ruzibekov.think.ui.theme.ThinkColor
 
 object BaseWarningDialogView {
 
@@ -30,7 +33,8 @@ object BaseWarningDialogView {
             dismissButton = {
                 ButtonView(
                     textRes = R.string.cancel,
-                    onClick = { onDismiss() }
+                    onClick = { onDismiss() },
+                    buttonColor = ThinkColor.Red
                 )
             },
             confirmButton = {
@@ -39,15 +43,23 @@ object BaseWarningDialogView {
                     onClick = {
                         onAccept()
                         onDismiss()
-                    }
+                    },
+                    buttonColor = ThinkColor.Green
                 )
             }
         )
     }
 
     @Composable
-    private fun ButtonView(textRes: Int, onClick: () -> Unit) {
-        Button(onClick = onClick) {
+    private fun ButtonView(
+        textRes: Int,
+        onClick: () -> Unit,
+        buttonColor: Color = ThinkColor.Black
+    ) {
+        Button(
+            onClick = onClick,
+            colors = ButtonDefaults.buttonColors(containerColor = buttonColor)
+        ) {
             Text(text = stringResource(textRes))
         }
     }

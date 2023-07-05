@@ -26,4 +26,7 @@ object ThinkColor {
     val AzureishWhite = Color(0xFFD9E8FC)
     val MagicMint = Color(0xFFB0E9CA)
     val MistyRose = Color(0xFFFFEADD)
+
+    val Green = Color(0xFF00FF00)
+    val Red = Color(0xFFFF0000)
 }
