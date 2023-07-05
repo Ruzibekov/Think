@@ -1,5 +1,9 @@
 # Think App
 
+
+![photo_2023-07-05_12-14-02](https://github.com/Ruzibekov/Think/assets/88031325/2abe0386-61d1-4d4c-97be-56c909fb8f7b) ![photo_2023-07-05_12-14-44](https://github.com/Ruzibekov/Think/assets/88031325/7217c110-84b9-4c04-a7ef-bbe31d3f9b78)
+
+
 Think App is a note-taking application developed for Android using Kotlin, Jetpack Compose, Dagger-Hilt, and Room.
 
 ## Features
