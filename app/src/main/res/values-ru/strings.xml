@@ -2,4 +2,14 @@
 <resources>
     <string name="app_name">Think</string>
     <string name="toast_note_created">Заметка успешно создана</string>
+    <string name="hint_search_notes">Поиск заметок</string>
+    <string name="details_label_title">Заголовок</string>
+    <string name="details_label_description">Описание…</string>
+    <string name="category_all">Все</string>
+    <string name="accept">Принимать</string>
+    <string name="cancel">Отмена</string>
+    <string name="warning">Предупреждение</string>
+    <string name="warning_changing_invalid_text">Вы хотите отменить все изменения?</string>
+    <string name="warning_deletion_text">Хотите удалить заметку?</string>
+    <string name="toast_changes_saved">Изменения сохранены</string>
 </resources>
