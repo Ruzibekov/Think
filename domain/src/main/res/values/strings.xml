@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    // categories
+    <string name="category_shopping">Shopping</string>
+    <string name="category_todo_list">To-do list</string>
+    <string name="category_ideas">Ideas</string>
+    <string name="category_working">Work</string>
+</resources>

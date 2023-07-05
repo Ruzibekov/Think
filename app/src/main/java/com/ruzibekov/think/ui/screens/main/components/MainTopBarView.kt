@@ -88,7 +88,7 @@ object MainTopBarView {
                     itemsIndexed(state.categoryList) { index, category ->
                         ItemTabView(
                             selected = state.selectedCategoryIndex.value == index,
-                            text = category.title
+                            text = stringResource(id = category.titleRes)
                         ) {
                             state.selectedCategoryIndex.value = index
                         }

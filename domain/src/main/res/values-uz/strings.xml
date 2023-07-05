@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="category_shopping">Xarid</string>
+    <string name="category_todo_list">"  Vazifalar"</string>
+    <string name="category_ideas">G\'oyalar</string>
+    <string name="category_working">Ish</string>
+</resources>

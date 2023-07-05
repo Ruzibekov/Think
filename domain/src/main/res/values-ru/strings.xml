@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="category_shopping">Покупка</string>
+    <string name="category_todo_list">Список дел</string>
+    <string name="category_ideas">Идеи</string>
+    <string name="category_working">Работа</string>
+</resources>

@@ -37,7 +37,7 @@ object CategoryChangeDialog {
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             RadioButton(
-                                selected = category.title == current.title,
+                                selected = category.titleRes == current.titleRes,
                                 onClick = { current = category }
                             )
                             Surface(
@@ -45,7 +45,7 @@ object CategoryChangeDialog {
                                 color = Color.Transparent
                             ) {
                                 Text(
-                                    text = category.title,
+                                    text = stringResource(id = category.titleRes),
                                     style = MaterialTheme.typography.titleSmall,
                                     fontSize = 16.sp,
                                     color = MaterialTheme.colorScheme.tertiary

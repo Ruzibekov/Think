@@ -101,7 +101,7 @@ object MainContentView {
         return if (state.selectedCategoryIndex.value != Constants.AllCategoryIndex)
             state.noteList.filter {
                 it.title.lowercase().contains(state.searchState.value.lowercase()) &&
-                        it.category.title == (state.categoryList[state.selectedCategoryIndex.value]).title
+                        it.category.titleRes == (state.categoryList[state.selectedCategoryIndex.value]).titleRes
             }
         else
             state.noteList.filter {
