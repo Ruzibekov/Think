@@ -26,6 +26,8 @@ data class MainState(
     val showCategoryChangeDialog: MutableState<Boolean> = mutableStateOf(false),
     val showWarningChangesInvalid: MutableState<Boolean> = mutableStateOf(false),
     val showDeletionWarningDialog: MutableState<Boolean> = mutableStateOf(false),
+
+    val isActiveSaveButton: MutableState<Boolean> = mutableStateOf(false)
 ){
 
     fun changeEditNoteData(

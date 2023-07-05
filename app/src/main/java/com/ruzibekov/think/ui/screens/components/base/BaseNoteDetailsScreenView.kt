@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -40,11 +39,9 @@ object BaseNoteDetailsScreenView {
         listeners: MainListeners,
         onDone: () -> Unit,
         onDeleteButton: Boolean = false,
-        saveButtonIsActive: MutableState<Boolean>
     ) {
         val focusManager = LocalFocusManager.current
         val descFocusRequest = remember { FocusRequester() }
-
 
         Scaffold(
             topBar = {
@@ -87,9 +84,9 @@ object BaseNoteDetailsScreenView {
                         onClick = {
                             onDone()
                             focusManager.clearFocus()
-                            saveButtonIsActive.value = false
+                            state.isActiveSaveButton.value = false
                         },
-                        enabled = saveButtonIsActive.value
+                        enabled = state.isActiveSaveButton.value
                     )
                 }
             }
@@ -101,11 +98,12 @@ object BaseNoteDetailsScreenView {
                     .background(MaterialTheme.colorScheme.secondary)
                     .padding(space_20)
             ) {
+
                 DetailsTextField.Default(
                     value = state.noteEditTitle.value,
                     onValueChange = {
                         state.noteEditTitle.value = it
-                        saveButtonIsActive.value = checkIsActiveButton(state)
+                        state.isActiveSaveButton.value = checkIsActiveButton(state)
                     },
                     labelRes = R.string.details_label_title,
                     textStyle = TextStyle(
@@ -114,8 +112,6 @@ object BaseNoteDetailsScreenView {
                         fontSize = 24.sp,
                         fontWeight = FontWeight.Bold
                     ),
-                    maxLines = 1,
-                    onDone = { descFocusRequest.requestFocus() }
                 )
 
                 Spacer(modifier = Modifier.height(6.dp))
@@ -124,7 +120,7 @@ object BaseNoteDetailsScreenView {
                     value = state.noteEditDesc.value,
                     onValueChange = {
                         state.noteEditDesc.value = it
-                        saveButtonIsActive.value = checkIsActiveButton(state)
+                        state.isActiveSaveButton.value = checkIsActiveButton(state)
                     },
                     labelRes = R.string.details_label_description,
                     textStyle = TextStyle(
@@ -133,7 +129,6 @@ object BaseNoteDetailsScreenView {
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Normal
                     ),
-                    onDone = { focusManager.clearFocus() },
                     modifier = Modifier.focusRequester(descFocusRequest),
                 )
             }

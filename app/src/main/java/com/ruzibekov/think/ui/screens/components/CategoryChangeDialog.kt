@@ -60,6 +60,7 @@ object CategoryChangeDialog {
                         onClick = {
                             state.noteEditCategory.value = current
                             state.showCategoryChangeDialog.value = false
+                            state.isActiveSaveButton.value = true
                         },
                         modifier = Modifier.fillMaxWidth()
                     ) {
