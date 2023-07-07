@@ -54,7 +54,11 @@ object BaseNoteDetailsScreenView {
 
                     ItemIcon(
                         icon = ThinkIcon.Back,
-                        onClick = { listeners.showWarningCancelChangeDialog() }
+                        onClick = {
+                            if (state.isActiveSaveButton.value)
+                                listeners.showWarningCancelChangeDialog()
+                            else listeners.onBackStack()
+                        }
                     )
 
                     Spacer(modifier = Modifier.weight(1f))
@@ -136,7 +140,7 @@ object BaseNoteDetailsScreenView {
 
         if (state.showCategoryChangeDialog.value)
             CategoryChangeDialog.Default(state = state)
-        else if (state.showWarningChangesInvalid.value)
+        else if (state.showWarningChangesInvalidDialog.value)
             WarningChangingInvalidDialog.Default(state, listeners)
         else if (state.showDeletionWarningDialog.value)
             WarningDeletionDialog.Default(state, listeners)

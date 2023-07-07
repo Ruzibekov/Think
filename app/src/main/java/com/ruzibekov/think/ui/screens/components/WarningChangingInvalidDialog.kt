@@ -14,8 +14,10 @@ object WarningChangingInvalidDialog {
             state = state,
             listeners = listeners,
             textRes = R.string.warning_changing_invalid_text,
-            onAccept = { listeners.onBackStack() },
-            onDismiss = { state.showWarningChangesInvalid.value = false }
+            onAccept = {
+                listeners.onBackStack()
+            },
+            onDismiss = { state.showWarningChangesInvalidDialog.value = false }
         )
     }
 

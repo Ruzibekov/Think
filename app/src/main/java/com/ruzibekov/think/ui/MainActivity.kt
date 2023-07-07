@@ -81,6 +81,7 @@ class MainActivity : ComponentActivity(), MainListeners {
     }
 
     override fun onBackStack() {
+        viewModel.state.isActiveSaveButton.value = false
         navController?.popBackStack()
     }
 
@@ -89,7 +90,7 @@ class MainActivity : ComponentActivity(), MainListeners {
     }
 
     override fun showWarningCancelChangeDialog() {
-        viewModel.state.showWarningChangesInvalid.value = true
+        viewModel.state.showWarningChangesInvalidDialog.value = true
     }
 
     override fun showDeletionWarningDialog() {
