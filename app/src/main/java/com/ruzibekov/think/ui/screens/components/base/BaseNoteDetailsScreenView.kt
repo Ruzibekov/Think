@@ -133,7 +133,7 @@ object BaseNoteDetailsScreenView {
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Normal
                     ),
-                    modifier = Modifier.focusRequester(descFocusRequest),
+                    modifier = Modifier.fillMaxSize().focusRequester(descFocusRequest),
                 )
             }
         }
